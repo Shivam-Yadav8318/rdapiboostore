@@ -1,10 +1,8 @@
 
 const express = require("express");
 const cors = require("cors");
-<<<<<<< HEAD
+
 require("dotenv").config();
-=======
->>>>>>> f32b891442c72627b49becb71c877c978e89778a
 
 const connect = require("./connection");
 
@@ -12,17 +10,13 @@ const book = require("./routes/book");
 const mobile = require("./routes/mobile");
 const discount = require("./routes/discount");
 const user = require("./routes/user");
-<<<<<<< HEAD
-const getTransactions = require("./routes/PaymentList");
-=======
 
->>>>>>> f32b891442c72627b49becb71c877c978e89778a
+const getTransactions = require("./routes/PaymentList");
 const home = require("./routes/user/home");
 const frontUser = require("./routes/user/user");
 
 const createAdmin = require("./createAdmin");
 
-<<<<<<< HEAD
 // Razorpay Payment Routes
 const paymentRoutes = require("./routes/user/Payment");
 
@@ -71,66 +65,57 @@ app.use("/api/payment", paymentRoutes);
 // ===================================
 // OTHER ROUTES
 // ===================================
+
 app.use(getTransactions);
 app.use(book);
 app.use(discount);
+
 app.use(home);
 app.use(frontUser);
+
 app.use(mobile);
 app.use(user);
+
+// ===================================
+// HOME ROUTE
+// ===================================
+
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Bookstore API is running",
+  });
+});
 
 // ===================================
 // DATABASE CONNECTION
 // ===================================
 
-connect();
-
-// ===================================
-// CREATE ADMIN
-// ===================================
-
-createAdmin();
-
-// ===================================
-// START SERVER
-// ===================================
-
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
-=======
-const app = express();
+async function startServer() {
+  try {
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+    await connect();
 
-// Routes
-app.use(book);
-app.use(discount);
+    // ===================================
+    // CREATE ADMIN
+    // ===================================
 
-app.use(home);
-app.use(frontUser);
+    await createAdmin();
 
-app.use(mobile);
-app.use(user);
+    // ===================================
+    // START SERVER
+    // ===================================
 
-// Database connection
-connect();
+    app.listen(PORT, () => {
+      console.log(`Server is running on ${PORT}`);
+    });
 
-// Create admin
-createAdmin();
-
-// Start server
-const PORT = 3000;
-
-app.listen(PORT, (err) => {
-  if (err) {
-    console.log("Server Error:", err);
-  } else {
-    console.log(`Server is running on ${PORT}..`);
+  } catch (error) {
+    console.log("Server Error:", error);
+    process.exit(1);
   }
->>>>>>> f32b891442c72627b49becb71c877c978e89778a
-});
+}
+
+startServer();

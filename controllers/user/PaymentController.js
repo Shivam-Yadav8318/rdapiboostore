@@ -23,6 +23,15 @@ const crypto = require('crypto');
  // ==============================
 const makePayment = async (req, res) => {
   try {
+    console.log("========== RAZORPAY DEBUG ==========");
+
+console.log({
+    keyExists: !!process.env.RAZORPAY_KEY_ID,
+    secretExists: !!process.env.RAZORPAY_KEY_SECRET,
+    keyPrefix: process.env.RAZORPAY_KEY_ID?.substring(0, 8),
+    keyLength: process.env.RAZORPAY_KEY_ID?.length,
+    secretLength: process.env.RAZORPAY_KEY_SECRET?.length
+});
     const razorpay = new Razorpay({
       key_id: process.env.RAZORPAY_KEY_ID,
       key_secret: process.env.RAZORPAY_KEY_SECRET
