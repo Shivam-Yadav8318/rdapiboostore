@@ -16,19 +16,13 @@
     "body-parser": "^2.3.0",
     "cloudinary": "^2.11.0",
     "cors": "^2.8.6",
-<<<<<<< HEAD
     "dotenv": "^18.0.9",
-=======
->>>>>>> f32b891442c72627b49becb71c877c978e89778a
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.9.3",
     "mongoose-timestamps": "^0.0.1",
-<<<<<<< HEAD
     "multer": "^2.3.0",
     "razorpay": "^2.9.8"
-=======
     "multer": "^2.3.0"
->>>>>>> f32b891442c72627b49becb71c877c978e89778a
   }
 }
